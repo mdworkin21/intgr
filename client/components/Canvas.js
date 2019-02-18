@@ -18,11 +18,12 @@ class Canvas extends Component {
     let canvas = this.canvas.current
     if (canvas.getContext){
       let context = canvas.getContext('2d')
-      context.strokeStyle = 'blue'
       context.moveTo(mouseX, mouseY)
       context.lineTo(mouseX+1,mouseY+1);
       context.stroke();
-      context.closePath();
+      // context.beginPath()
+      context.arc(mouseX, mouseY, 10, 0, Math.PI*2, true);
+      // context.closePath();
     }
   }
 
@@ -56,17 +57,9 @@ class Canvas extends Component {
         ref={this.canvas} 
         width="400" 
         height="600" 
-        // onMouseDown={this.handleMouseDown} 
-        // onMouseMove={this.handleMouseMove} 
-        // onMouseUp={this.handleMouseUp}
-        // onTouchStart={this.handleMouseDown}
-        // onTouchMove={this.handleMouseMove}
-        // onTouchEnd = {this.handleMouseUp}
-        onPointerDown={this.handleMouseDown}
-        onPointerMove={this.handleMouseMove}
-        onPointerCancel = {this.handleMouseUp}
-        >
-        
+        onMouseDown={this.handleMouseDown} 
+        onMouseMove={this.handleMouseMove} 
+        onMouseUp={this.handleMouseUp}> 
       </canvas>
     </div>
     
