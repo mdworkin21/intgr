@@ -1,8 +1,15 @@
 import React from 'react'
-// import store from './redux/store'
+import {Provider} from 'react-redux'
+import store from '../redux/store'
+import Canvas from './Canvas'
 
+//When you add redux, you'll need to add 
 const App = () => {
-  return <h1>HELLO TESTING 123</h1>
+return (
+  <Provider store={store}>
+    <Canvas />
+  </Provider>
+  )
 }
 
 export default App
