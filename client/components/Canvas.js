@@ -56,12 +56,15 @@ class Canvas extends Component {
         ref={this.canvas} 
         width="400" 
         height="600" 
-        onMouseDown={this.handleMouseDown} 
-        onMouseMove={this.handleMouseMove} 
-        onMouseUp={this.handleMouseUp}
-        onTouchStart={this.handleMouseDown}
-        onTouchMove={this.handleMouseMove}
-        onTouchEnd = {this.handleMouseUp}
+        // onMouseDown={this.handleMouseDown} 
+        // onMouseMove={this.handleMouseMove} 
+        // onMouseUp={this.handleMouseUp}
+        // onTouchStart={this.handleMouseDown}
+        // onTouchMove={this.handleMouseMove}
+        // onTouchEnd = {this.handleMouseUp}
+        onPointerDown={this.handleMouseDown}
+        onPointerMove={this.handleMouseMove}
+        onPointerCancel = {this.handleMouseUp}
         >
         
       </canvas>
