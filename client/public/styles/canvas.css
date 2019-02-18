@@ -1,0 +1,10 @@
+#canvas-container{
+  position: relative;
+  left: 36%;
+  top: 6vh;
+}
+
+#canvas{
+  background-color: white;
+  border: 5px solid black;
+}

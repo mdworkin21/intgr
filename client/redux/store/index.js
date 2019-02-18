@@ -1,14 +1,14 @@
 import {createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
-
+import placeHolder from '../reducers/placeHolder'
 
 
 //Redux Devtools 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 //Combines Reducers
 const rootReducer = combineReducers({
-  replaceWhenYouHaveState: 'asdasdads'
+  placeHolder: placeHolder
 })
 
 //Creates Store
