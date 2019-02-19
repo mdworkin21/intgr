@@ -38,8 +38,8 @@ class Canvas extends Component {
       if (event.touches.length === 1){
         let touch = event.touches[0]
         //  touchX = touch.pageX-touch.target.offsetLeft
-        touchX = touch.pageX
-        touchY = touch.pageY
+        touchX = touch.screenX
+        touchY = touch.screenY
         console.log('FROM TOUCH', touch)
       }
     }

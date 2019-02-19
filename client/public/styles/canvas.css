@@ -6,7 +6,7 @@ h1 {
 }
 
 #canvas-container{
-  position: relative;
+  position: fixed;
   left: 36%;
   top: 6vh;
   margin: 0 auto;
