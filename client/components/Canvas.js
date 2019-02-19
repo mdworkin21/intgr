@@ -11,14 +11,12 @@ class Canvas extends Component {
   }
 
 
-  draw = (event) => {
+  draw = (event, coordX, coordY) => {
     let nativeEvent = event.nativeEvent
     console.log(nativeEvent.sourceCapabilities.firesTouchEvents)
-    // if (nativeEvent.sourceCapabilities.firesTouchEvents){
-
-    // }
-    let mouseX = nativeEvent.offsetX
-    let mouseY = nativeEvent.offsetY
+    
+    let mouseX = coordX
+    let mouseY = coordY
     let canvas = this.canvas.current
     if (canvas.getContext){
       let context = canvas.getContext('2d')
@@ -37,27 +35,22 @@ class Canvas extends Component {
   }
 
   getTouchPos = (event) => {
-    console.log('TOUCH',event)
-
-    // if (!e){
-    //    e = event
-    // }
-
+    let touchX, touchY
     if(event.touches){
       if (event.touches.length === 1){
         let touch = event.touches[0]
-        touchX = touch.pageX-touch.target.offsetLeft
-        touchY = touch.pageY-touch.target.offsetTop
+         touchX = touch.pageX-touch.target.offsetLeft
+         touchY = touch.pageY-touch.target.offsetTop
 
       }
     }
-    
+    return [touchX, touchY]
   }
 
   handleTouchMove = (event) => {
     event.preventDefault()
-    this.getTouchPos(event)
-    this.draw(event)
+    const[touchX, touchY] = this.getTouchPos(event)
+    this.draw(event, touchX, touchY)
     console.log('MOVE')
   }
 
@@ -70,7 +63,10 @@ class Canvas extends Component {
 
   handleMouseMove = (event) => {
     if(this.state.isDown){
-      this.draw(event)
+    let nativeEvent = event.nativeEvent  
+     
+    
+      this.draw(event, nativeEvent.offsetX, nativeEvent.offsetY)
     }
   }
 
