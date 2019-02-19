@@ -1,7 +1,15 @@
+h1 {
+  min-height: 1rem;
+  font-size: 2rem;
+  position: relative;
+  left: 5vw;
+}
+
 #canvas-container{
   position: relative;
   left: 36%;
   top: 6vh;
+  margin: 0 auto;
 }
 
 #canvas{

@@ -13,6 +13,10 @@ class Canvas extends Component {
 
   draw = (event) => {
     let nativeEvent = event.nativeEvent
+    console.log(nativeEvent.sourceCapabilities.firesTouchEvents)
+    // if (nativeEvent.sourceCapabilities.firesTouchEvents){
+
+    // }
     let mouseX = nativeEvent.offsetX
     let mouseY = nativeEvent.offsetY
     let canvas = this.canvas.current
@@ -21,9 +25,7 @@ class Canvas extends Component {
       context.moveTo(mouseX, mouseY)
       context.lineTo(mouseX+1,mouseY+1);
       context.stroke();
-      // context.beginPath()
       context.arc(mouseX, mouseY, 10, 0, Math.PI*2, true);
-      // context.closePath();
     }
   }
 
@@ -46,12 +48,19 @@ class Canvas extends Component {
       isDown: false
     })
   }
+
+  clearCanvas = () => {
+    let canvas = this.canvas.current
+    let context = canvas.getContext('2d')
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.beginPath()
+  }
   
 
   render(){
   return (
     <div id="canvas-container">
-      <h1>HELLO</h1>
+      <h1>Draw a Number: 0 - 9</h1>
       <canvas 
         id="canvas" 
         ref={this.canvas} 
@@ -61,6 +70,7 @@ class Canvas extends Component {
         onMouseMove={this.handleMouseMove} 
         onMouseUp={this.handleMouseUp}> 
       </canvas>
+      <button className="ui button" onClick={this.clearCanvas}>Clear</button>
     </div>
     
     )
