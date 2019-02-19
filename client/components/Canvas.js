@@ -28,6 +28,7 @@ class Canvas extends Component {
     event.preventDefault()
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
+    event.preventDefault()
   }
 
   getTouchPos = (event) => {
@@ -37,7 +38,7 @@ class Canvas extends Component {
         let touch = event.touches[0]
          touchX = touch.pageX-touch.target.offsetLeft
          touchY = touch.pageY-touch.target.offsetTop
-         console.log('FROM TOUCH', touch.pageX-touch)
+         console.log('FROM TOUCH', touch)
       }
     }
     return [touchX, touchY]
