@@ -27,9 +27,7 @@ class Canvas extends Component {
   handleTouchStart = (event) => {
     event.preventDefault()
     const[touchX, touchY] = this.getTouchPos(event)
-    console.log(touchX, touchY)
     this.draw(event, touchX, touchY)
-    console.log('START')
   }
 
   getTouchPos = (event) => {
@@ -39,18 +37,15 @@ class Canvas extends Component {
         let touch = event.touches[0]
          touchX = touch.pageX-touch.target.offsetLeft
          touchY = touch.pageY-touch.target.offsetTop
-
       }
     }
     return [touchX, touchY]
   }
 
   handleTouchMove = (event) => {
-    event.preventDefault()
     const[touchX, touchY] = this.getTouchPos(event)
-    console.log(touchX, touchY)
     this.draw(event, touchX, touchY)
-    console.log('MOVE')
+    event.preventDefault()
   }
 
   handleMouseDown = (event) => {
