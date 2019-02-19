@@ -35,8 +35,9 @@ class Canvas extends Component {
     if(event.touches){
       if (event.touches.length === 1){
         let touch = event.touches[0]
-         touchX = touch.pageX-touch.target.offsetLeft - 10
-         touchY = touch.pageY-touch.target.offsetTop
+         touchX = touch.pageX-touch.target
+         touchY = touch.pageY-touch.target
+         console.log('FROM TOUCH', touch.pageX-touch.target.offsetLeft, touch.pageY-touch.target.offsetTop, touch.pageX-touch.target, touch.pageY-touch.target )
       }
     }
     return [touchX, touchY]
