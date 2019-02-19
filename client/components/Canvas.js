@@ -30,7 +30,7 @@ class Canvas extends Component {
   }
 
   handleTouchStart = (event) => {
-    event.preventDefaul()
+    event.preventDefault()
     this.getTouchPos(event)
   }
 
