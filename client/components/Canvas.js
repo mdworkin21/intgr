@@ -39,7 +39,7 @@ class Canvas extends Component {
         //  touchX = touch.pageX-touch.target.offsetLeft
         touchX = touch.clientX
         touchY = touch.clientY
-        console.log('FROM TOUCH', touch.clientY, touch.pageY-touch.target.offsetTop)
+        console.log('FROM TOUCH', touch)
       }
     }
     return [touchX, touchY]
@@ -93,8 +93,8 @@ class Canvas extends Component {
           onMouseDown={this.handleMouseDown} 
           onMouseMove={this.handleMouseMove} 
           onMouseUp={this.handleMouseUp}
-          onTouchStart ={this.handleTouchStart}
-          onTouchMove = {this.handleTouchMove}
+          onTouchStart ={this.handleTouchStart && false}
+          onTouchMove = {this.handleTouchMove && false}
           > 
         </canvas>
       </div>
