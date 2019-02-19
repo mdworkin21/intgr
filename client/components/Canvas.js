@@ -37,14 +37,15 @@ class Canvas extends Component {
   }
 
   getTouchPos = (event) => {
-    console.log('TOUCH',event, e)
-    if (!e){
-      let e = event
-    }
+    console.log('TOUCH',event)
 
-    if(e.touches){
-      if (e.touches.length === 1){
-        let touch = e.touches[0]
+    // if (!e){
+    //    e = event
+    // }
+
+    if(event.touches){
+      if (event.touches.length === 1){
+        let touch = event.touches[0]
         touchX = touch.pageX-touch.target.offsetLeft
         touchY = touch.pageY-touch.target.offsetTop
 
