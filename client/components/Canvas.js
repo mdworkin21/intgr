@@ -12,6 +12,7 @@ class Canvas extends Component {
 
 
   draw = (coordX, coordY) => {
+    event.preventDefault()
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
@@ -37,9 +38,8 @@ class Canvas extends Component {
     if(event.touches){
       if (event.touches.length === 1){
         let touch = event.touches[0]
-        //  touchX = touch.pageX-touch.target.offsetLeft
-        touchX = touch.screenX
-        touchY = touch.screenY
+         touchX = touch.pageX-touch.target.offsetLeft
+         touchY = touch.pageY-touch.target.offsetTop
         console.log('FROM TOUCH', touch)
       }
     }
@@ -56,13 +56,14 @@ class Canvas extends Component {
     this.setState({
       isDown: true,
     })
-    this.draw(event)
+    let nativeEvent = event.nativeEvent  
+    this.draw(nativeEvent.offsetX, nativeEvent.offsetY)
   }
 
   handleMouseMove = (event) => {
     if(this.state.isDown){
     let nativeEvent = event.nativeEvent  
-    this.draw(event, nativeEvent.offsetX, nativeEvent.offsetY)
+    this.draw(nativeEvent.offsetX, nativeEvent.offsetY)
     }
   }
 
