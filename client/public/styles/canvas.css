@@ -16,3 +16,10 @@ h1 {
   background-color: white;
   border: 5px solid black;
 }
+
+#clear-button{
+  position: relative;
+  left: 38.7vw;
+  top: 5vh;
+  width: 23vw;
+}

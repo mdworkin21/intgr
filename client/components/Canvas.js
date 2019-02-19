@@ -59,20 +59,21 @@ class Canvas extends Component {
 
   render(){
   return (
-    <div id="canvas-container">
-      <h1>Draw a Number: 0 - 9</h1>
-      <canvas 
-        id="canvas" 
-        ref={this.canvas} 
-        width="400" 
-        height="600" 
-        onMouseDown={this.handleMouseDown} 
-        onMouseMove={this.handleMouseMove} 
-        onMouseUp={this.handleMouseUp}> 
-      </canvas>
-      <button className="ui button" onClick={this.clearCanvas}>Clear</button>
-    </div>
-    
+    <React.Fragment> 
+      <div id="canvas-container">
+        <h1>Draw a Number: 0 - 9</h1>
+        <canvas 
+          id="canvas" 
+          ref={this.canvas} 
+          width="400" 
+          height="600" 
+          onMouseDown={this.handleMouseDown} 
+          onMouseMove={this.handleMouseMove} 
+          onMouseUp={this.handleMouseUp}> 
+        </canvas>
+      </div>
+      <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
+      </React.Fragment>
     )
   }  
 }
