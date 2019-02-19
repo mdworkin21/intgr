@@ -29,6 +29,14 @@ class Canvas extends Component {
     }
   }
 
+  handleTouchStart = () => {
+    this.getTouchPos()
+  }
+
+  getTouchPos = (event) => {
+    console.log(event)
+  }
+
   handleMouseDown = (event) => {
     this.setState({
       isDown: true,
@@ -69,7 +77,9 @@ class Canvas extends Component {
           height="600" 
           onMouseDown={this.handleMouseDown} 
           onMouseMove={this.handleMouseMove} 
-          onMouseUp={this.handleMouseUp}> 
+          onMouseUp={this.handleMouseUp}
+          onTouchStart ={this.handleTouchStart}
+          > 
         </canvas>
       </div>
       <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
