@@ -29,8 +29,9 @@ class Canvas extends Component {
     }
   }
 
-  handleTouchStart = () => {
-    this.getTouchPos()
+  handleTouchStart = (event) => {
+    event.preventDefaul()
+    this.getTouchPos(event)
   }
 
   getTouchPos = (event) => {
