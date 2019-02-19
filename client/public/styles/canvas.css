@@ -10,6 +10,7 @@ h1 {
   left: 36%;
   top: 6vh;
   margin: 0 auto;
+  touch-action: none;
 }
 
 #canvas{
