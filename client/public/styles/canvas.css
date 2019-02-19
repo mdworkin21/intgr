@@ -10,13 +10,13 @@ h1 {
   left: 36%;
   top: 6vh;
   margin: 0 auto;
-  touch-action: none;
+ 
 }
 
 #canvas{
   background-color: white;
   border: 5px solid black;
-  touch-action: none;
+  
 }
 
 #clear-button{

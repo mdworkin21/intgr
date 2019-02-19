@@ -93,8 +93,8 @@ class Canvas extends Component {
           onMouseDown={this.handleMouseDown} 
           onMouseMove={this.handleMouseMove} 
           onMouseUp={this.handleMouseUp}
-          onTouchStart ={this.handleTouchStart && false}
-          onTouchMove = {this.handleTouchMove && false}
+          onTouchStart ={this.handleTouchStart}
+          onTouchMove = {this.handleTouchMove}
           > 
         </canvas>
       </div>
