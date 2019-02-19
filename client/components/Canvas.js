@@ -32,6 +32,7 @@ class Canvas extends Component {
   }
 
   getTouchPos = (event) => {
+    event.preventDefault()
     let touchX, touchY
     if(event.touches){
       if (event.touches.length === 1){
