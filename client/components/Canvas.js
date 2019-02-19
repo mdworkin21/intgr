@@ -32,10 +32,32 @@ class Canvas extends Component {
   handleTouchStart = (event) => {
     event.preventDefault()
     this.getTouchPos(event)
+    this.draw(event)
+    console.log('START')
   }
 
   getTouchPos = (event) => {
-    console.log(event)
+    console.log('TOUCH',event, e)
+    if (!e){
+      let e = event
+    }
+
+    if(e.touches){
+      if (e.touches.length === 1){
+        let touch = e.touches[0]
+        touchX = touch.pageX-touch.target.offsetLeft
+        touchY = touch.pageY-touch.target.offsetTop
+
+      }
+    }
+    
+  }
+
+  handleTouchMove = (event) => {
+    event.preventDefault()
+    this.getTouchPos(event)
+    this.draw(event)
+    console.log('MOVE')
   }
 
   handleMouseDown = (event) => {
@@ -80,6 +102,7 @@ class Canvas extends Component {
           onMouseMove={this.handleMouseMove} 
           onMouseUp={this.handleMouseUp}
           onTouchStart ={this.handleTouchStart}
+          onTouchMove = {this.handleTouchMove}
           > 
         </canvas>
       </div>
