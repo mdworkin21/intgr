@@ -12,7 +12,6 @@ class Canvas extends Component {
 
 
   draw = (coordX, coordY) => {
-    event.preventDefault()
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
@@ -26,15 +25,12 @@ class Canvas extends Component {
   }
 
   handleTouchStart = (event) => {
-    event.preventDefault()
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
-    event.preventDefault()
+    
   }
 
   getTouchPos = (event) => {
-    console.log('ASDA', this.canvas.current.getBoundingClientRect())
-    event.preventDefault()
     let touchX, touchY
     if(event.touches){
       if (event.touches.length === 1){
@@ -42,7 +38,6 @@ class Canvas extends Component {
         let touch = event.touches[0]
          touchX = touch.clientX - rect.left
          touchY = touch.clientY - rect.top
-        console.log('FROM TOUCH', touchX, touchY, rect.left, rect.top)
       }
     }
     return [touchX, touchY]
@@ -51,8 +46,6 @@ class Canvas extends Component {
   handleTouchMove = (event) => {
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
-    event.preventDefault()
-    console.log('AD', event.isDefaultPrevented())
   }
 
   handleMouseDown = (event) => {
