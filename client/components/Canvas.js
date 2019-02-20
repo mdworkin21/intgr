@@ -25,10 +25,7 @@ class Canvas extends Component {
   }
 
   handleTouchStart = (event) => {
-    let nativeEvent = event.nativeEvent
-    if (nativeEvent.target === this.canvas.current){
-      nativeEvent.preventDefault()
-    }
+    // event.preventDefault()    
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
     
@@ -50,10 +47,7 @@ class Canvas extends Component {
   handleTouchMove = (event) => {
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
-    let nativeEvent = event.nativeEvent
-    if (nativeEvent.target === this.canvas.current){
-      nativeEvent.preventDefault()
-    }
+    event.preventDefault()
   }
 
   handleMouseDown = (event) => {
