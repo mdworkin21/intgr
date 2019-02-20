@@ -33,13 +33,15 @@ class Canvas extends Component {
   }
 
   getTouchPos = (event) => {
+    console.log('ASDA', this.canvas.current.getBoundingClientRect())
     event.preventDefault()
     let touchX, touchY
     if(event.touches){
       if (event.touches.length === 1){
+        let rect = this.canvas.current.getBoundingClientRect()
         let touch = event.touches[0]
-         touchX = touch.pageX-touch.target.offsetLeft
-         touchY = touch.pageY-touch.target.offsetTop
+         touchX = touch.pageX-touch.target.offsetLeft - rect.left
+         touchY = touch.pageY-touch.target.offsetTop - rect.top
         console.log('FROM TOUCH', touch, event)
       }
     }
