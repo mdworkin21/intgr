@@ -11,7 +11,8 @@ class Canvas extends Component {
   }
 
 
-  draw = (coordX, coordY) => {
+  draw = (coordX, coordY, event) => {
+    event.preventDefault
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
@@ -27,7 +28,7 @@ class Canvas extends Component {
   handleTouchStart = (event) => {
     // event.preventDefault()    
     const[touchX, touchY] = this.getTouchPos(event)
-    this.draw(touchX, touchY)
+    this.draw(touchX, touchY, event)
     
   }
 
@@ -46,7 +47,7 @@ class Canvas extends Component {
 
   handleTouchMove = (event) => {
     const[touchX, touchY] = this.getTouchPos(event)
-    this.draw(touchX, touchY)
+    this.draw(touchX, touchY, event)
     event.preventDefault()
   }
 
