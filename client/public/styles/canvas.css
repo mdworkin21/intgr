@@ -25,3 +25,22 @@ h1 {
   top: 5vh;
   width: 23vw;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  #canvas-container{
+    position: absolute;
+    left: 36%;
+    top: 6vh;
+    margin: 0 auto;
+   
+  }
+  
+  #canvas{
+    position: absolute;
+    background-color: white;
+    border: 5px solid black;
+    
+  }
+  
+}
