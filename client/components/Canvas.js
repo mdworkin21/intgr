@@ -50,6 +50,7 @@ class Canvas extends Component {
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
     event.preventDefault()
+    console.log('AD', event.isDefaultPrevented())
   }
 
   handleMouseDown = (event) => {
