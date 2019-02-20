@@ -25,6 +25,9 @@ class Canvas extends Component {
   }
 
   handleTouchStart = (event) => {
+    if (event.target === this.canvas.current){
+      event.preventDefault()
+    }
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
     
@@ -46,6 +49,9 @@ class Canvas extends Component {
   handleTouchMove = (event) => {
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
+    if (event.target === this.canvas.current){
+      event.preventDefault()
+    }
   }
 
   handleMouseDown = (event) => {
