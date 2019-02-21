@@ -12,9 +12,7 @@ class Canvas extends Component {
     }
   }
 
-
   draw = (coordX, coordY) => {
-    
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
@@ -22,8 +20,8 @@ class Canvas extends Component {
       let context = canvas.getContext('2d')
       context.moveTo(mouseX, mouseY)
       context.lineTo(mouseX+1,mouseY+1);
-      context.stroke();
-      context.arc(mouseX, mouseY, 10, 0, Math.PI*2, true);
+      context.fill()
+      context.arc(mouseX, mouseY, 6, 0, Math.PI*2, false);
     }
   }
 
@@ -40,7 +38,7 @@ class Canvas extends Component {
         let rect = this.canvas.current.getBoundingClientRect()
         let touch = event.touches[0]
          touchX = touch.clientX - rect.left
-         touchY = touch.clientY - rect.top
+         touchY = touch.clientY - rect.top + 30
       }
     }
     return [touchX, touchY]
@@ -82,7 +80,7 @@ class Canvas extends Component {
   }
   
   componentDidMount(){
-    //need to add more screen sizes to adjust canvas
+    //First is for mobile screens
     if (screen.width <= 375){
       this.setState({
         width: 250,
@@ -97,8 +95,7 @@ class Canvas extends Component {
   }
 
   render(){
-    console.log('SIZE', screen.width)
-    
+    console.log('SIZE', screen.width) 
   return (
     <React.Fragment> 
         <h1>Draw a Number: 0 - 9</h1>

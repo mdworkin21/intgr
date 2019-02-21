@@ -26,12 +26,13 @@ h1 {
   width: 23vw;
 }
 
+ /* Mobile  */
 @media only screen and (max-width: 40em) { 
 h1 {
   min-height: 1rem;
   font-size: 2rem;
   position: fixed;
-  left: 13vw;
+  left: 15vw;
   top: 5vh;
 }
 
@@ -58,4 +59,65 @@ h1 {
   }
 }
 
-/* Need to add more media queries for differnet screen sizes */
+/* Tablets */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  h1 {
+    min-height: 1rem;
+    font-size: 2rem;
+    position: fixed;
+    left: 33vw;
+    top: 5vh;
+  }
+  
+    #canvas-container{
+      position: fixed;
+      left: 25%;
+      top: 12vh;
+      touch-action: none;
+    }
+    
+    #canvas{
+      background-color: white;
+      border: 5px solid black;
+      touch-action: none;
+    }
+    
+    #clear-button{
+      position: fixed;
+      left: 40vw;
+      top: 80vh;
+      width: 23vw;
+    }
+}
+
+
+/* ExtraLarge */
+@media only screen and (min-width: 90.063em) { 
+    h1 {
+      min-height: 1rem;
+      font-size: 2rem;
+      position: relative;
+      left: 35.5vw;
+      top: 5vh;
+    }
+    
+    #canvas-container{
+      position: relative;
+      left: 36%;
+      top: 6vh; 
+    }
+    
+    #canvas{
+      background-color: white;
+      border: 5px solid black;
+    }
+    
+    #clear-button{
+      position: relative;
+      left: 35vw;
+      top: 5vh;
+      width: 16vw;
+    }
+  
+
+}
