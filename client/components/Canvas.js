@@ -7,12 +7,14 @@ class Canvas extends Component {
     this.canvas = React.createRef()
     this.state = {
       isDown: false,
+      width: 0,
+      height: 0
     }
   }
 
 
-  draw = (coordX, coordY, event) => {
-    event.preventDefault
+  draw = (coordX, coordY) => {
+    
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
@@ -25,10 +27,9 @@ class Canvas extends Component {
     }
   }
 
-  handleTouchStart = (event) => {
-    // event.preventDefault()    
+  handleTouchStart = (event) => {   
     const[touchX, touchY] = this.getTouchPos(event)
-    this.draw(touchX, touchY, event)
+    this.draw(touchX, touchY)
     
   }
 
@@ -47,7 +48,7 @@ class Canvas extends Component {
 
   handleTouchMove = (event) => {
     const[touchX, touchY] = this.getTouchPos(event)
-    this.draw(touchX, touchY, event)
+    this.draw(touchX, touchY)
     event.preventDefault()
   }
 
@@ -64,8 +65,8 @@ class Canvas extends Component {
     let nativeEvent = event.nativeEvent  
     this.draw(nativeEvent.offsetX, nativeEvent.offsetY)
     }
+    event.preventDefault()
   }
-
 
   handleMouseUp = () => {
     this.setState({
@@ -80,23 +81,38 @@ class Canvas extends Component {
     context.beginPath()
   }
   
+  componentDidMount(){
+    //need to add more screen sizes to adjust canvas
+    if (screen.width <= 375){
+      this.setState({
+        width: 250,
+        height: 350
+      })
+    } else {
+      this.setState({
+        width: 400,
+        height: 600
+      })
+    }
+  }
 
   render(){
+    console.log('SIZE', screen.width)
+    
   return (
     <React.Fragment> 
-      <div id="canvas-container">
         <h1>Draw a Number: 0 - 9</h1>
+      <div id="canvas-container">
         <canvas 
           id="canvas" 
           ref={this.canvas} 
-          width="400" 
-          height="600" 
+          width={this.state.width}
+          height={this.state.height} 
           onMouseDown={this.handleMouseDown} 
           onMouseMove={this.handleMouseMove} 
           onMouseUp={this.handleMouseUp}
           onTouchStart ={this.handleTouchStart}
           onTouchMove = { this.handleTouchMove}
-          passive={{passive: false}}
           > 
         </canvas>
       </div>
