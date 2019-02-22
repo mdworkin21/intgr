@@ -19,6 +19,7 @@ h1 {
 #canvas{
   background-color: white;
   border: 5px solid black;
+  cursor: crosshair;
 }
 
 #clear-button{
@@ -26,6 +27,7 @@ h1 {
   left: 35vw;
   top: 5vh;
   width: 23vw;
+  
 }
 
  /* Mobile  */

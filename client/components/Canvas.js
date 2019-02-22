@@ -35,6 +35,7 @@ class Canvas extends Component {
 
   //Touch Methods
   handleTouchStart = (event) => {   
+    event.preventDefault()
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
   }
