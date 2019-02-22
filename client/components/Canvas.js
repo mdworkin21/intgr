@@ -12,6 +12,7 @@ class Canvas extends Component {
     }
   }
 
+  //Mouse and Touch use these
   draw = (coordX, coordY) => {
     let mouseX = coordX
     let mouseY = coordY
@@ -24,11 +25,18 @@ class Canvas extends Component {
       context.arc(mouseX, mouseY, 6, 0, Math.PI*2, false);
     }
   }
+  
+  clearCanvas = () => {
+    let canvas = this.canvas.current
+    let context = canvas.getContext('2d')
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.beginPath()
+  }
 
+  //Touch Methods
   handleTouchStart = (event) => {   
     const[touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
-    
   }
 
   getTouchPos = (event) => {
@@ -50,6 +58,7 @@ class Canvas extends Component {
     event.preventDefault()
   }
 
+  //Mouse Methods
   handleMouseDown = (event) => {
     this.setState({
       isDown: true,
@@ -71,14 +80,8 @@ class Canvas extends Component {
       isDown: false
     })
   }
-
-  clearCanvas = () => {
-    let canvas = this.canvas.current
-    let context = canvas.getContext('2d')
-    context.clearRect(0, 0, canvas.width, canvas.height)
-    context.beginPath()
-  }
   
+  //Gets screen size so we can adjust size of canvas for devices
   componentDidMount(){
     //First is for mobile screens
     if (screen.width <= 375){
@@ -94,27 +97,27 @@ class Canvas extends Component {
     }
   }
 
+  //Render
   render(){
-    console.log('SIZE', screen.width) 
-  return (
-    <React.Fragment> 
-        <h1>Draw a Number: 0 - 9</h1>
-      <div id="canvas-container">
-        <canvas 
-          id="canvas" 
-          ref={this.canvas} 
-          width={this.state.width}
-          height={this.state.height} 
-          onMouseDown={this.handleMouseDown} 
-          onMouseMove={this.handleMouseMove} 
-          onMouseUp={this.handleMouseUp}
-          onTouchStart ={this.handleTouchStart}
-          onTouchMove = { this.handleTouchMove}
-          > 
-        </canvas>
-      </div>
-      <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
-      </React.Fragment>
+    return (
+      <React.Fragment> 
+          <h1>Draw a Number: 0 - 9</h1>
+        <div id="canvas-container">
+          <canvas 
+            id="canvas" 
+            ref={this.canvas} 
+            width={this.state.width}
+            height={this.state.height} 
+            onMouseDown={this.handleMouseDown} 
+            onMouseMove={this.handleMouseMove} 
+            onMouseUp={this.handleMouseUp}
+            onTouchStart ={this.handleTouchStart}
+            onTouchMove = { this.handleTouchMove}
+            > 
+          </canvas>
+        </div>
+        <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
+        </React.Fragment>
     )
   }  
 }
