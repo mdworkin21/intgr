@@ -35,30 +35,28 @@ h1 {
 h1 {
   min-height: 1rem;
   font-size: 2rem;
-  position: fixed;
-  left: 15vw;
+  position: relative;
+  left: 16vw;
   top: 5vh;
 }
 
 
   #canvas-container{
-    position: fixed;
-    left: 15%;
-    top: 12vh;
-    touch-action: none;
+    position: relative;
+    left: 19%;
+    top: 5vh;
   }
   
   #canvas{
     background-color: white;
     border: 5px solid black;
-    touch-action: none;
   }
   
  
   #clear-button{
-    position: fixed;
-    left: 35vw;
-    top: 70vh;
+    position: relative;
+    left: 39vw;
+    top: 4.5vh;
     width: 23vw;
   }
 }
@@ -68,28 +66,26 @@ h1 {
   h1 {
     min-height: 1rem;
     font-size: 2rem;
-    position: fixed;
+    position: relative;
     left: 33vw;
-    top: 5vh;
+    top: 7vh;
   }
   
     #canvas-container{
-      position: fixed;
+      position: relative;
       left: 25%;
-      top: 12vh;
-      touch-action: none;
+      top: 7vh;
     }
     
     #canvas{
       background-color: white;
       border: 5px solid black;
-      touch-action: none;
     }
     
     #clear-button{
-      position: fixed;
-      left: 40vw;
-      top: 80vh;
+      position: relative;
+      left: 38vw;
+      top: 7vh;
       width: 23vw;
     }
 }
