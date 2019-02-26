@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import '../public/styles/canvas.css'
 
+
+
 class Canvas extends Component {
   constructor(){
     super()
@@ -10,6 +12,10 @@ class Canvas extends Component {
       width: 0,
       height: 0
     }
+
+    //This line is to stop unwanted scroll behavior on touch.
+    document.addEventListener('touchmove', function (event){event.preventDefault()}, {passive: false})
+
   }
 
   //Mouse and Touch use these
