@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import '../public/styles/canvas.css'
-
-
+import regeneratorRuntime, { async } from "regenerator-runtime"
 
 class Canvas extends Component {
   constructor(){
@@ -39,9 +39,17 @@ class Canvas extends Component {
     context.beginPath()
   }
 
-  saveCanvas = () => {
+  saveCanvas = async () => {
     let dataUrl = this.canvas.current.toDataURL()
-    console.log(dataUrl instanceof Blob)
+    try{
+      let newDrawing = await axios.post('/api/userNums', {
+        label: 'HARD CODEDED FOR NOW',
+        image: dataUrl
+      })
+      
+    } catch(err) {
+        console.log(err)
+    }
     return dataUrl
   }
 

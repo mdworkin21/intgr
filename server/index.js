@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 //Api Routes
+app.use('/api', require('./api'))
 
 // Redirects to homepage when no API reqs match
 app.get('*', (req, res) => {
