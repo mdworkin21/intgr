@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import axios from 'axios'
-import '../public/styles/canvas.css'
 import regeneratorRuntime, { async } from "regenerator-runtime"
+import axios from 'axios'
+import LabelModal from './LabelModal'
+import '../public/styles/canvas.css'
+
 
 class Canvas extends Component {
   constructor(){
@@ -10,12 +12,17 @@ class Canvas extends Component {
     this.state = {
       isDown: false,
       width: 0,
-      height: 0
+      height: 0,
+      image: '',
+      label: '',
+      modalOn: false
     }
 
     //This line is to stop unwanted scroll behavior on touch.
     document.addEventListener('touchmove', function (event){event.preventDefault()}, {passive: false})
 
+    //Prevents submission upon enter
+    document.addEventListener('submit', function (event){event.preventDefault()}, {passive: false})
   }
 
   //Mouse and Touch use these
@@ -39,18 +46,34 @@ class Canvas extends Component {
     context.beginPath()
   }
 
-  saveCanvas = async () => {
+  saveCanvas = async (event) => {
+    event.preventDefault()
     let dataUrl = this.canvas.current.toDataURL()
+    this.setState({
+      image: dataUrl
+    })
     try{
       let newDrawing = await axios.post('/api/userNums', {
-        label: 'HARD CODEDED FOR NOW',
+        label: this.state.label,
         image: dataUrl
       })
       
+      if (newDrawing.status === 200){
+        this.clearCanvas()
+        this.setState({
+          label: ''
+        })
+      }
     } catch(err) {
         console.log(err)
     }
-    return dataUrl
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+    console.log(this.state)
   }
 
   //Touch Methods
@@ -121,6 +144,7 @@ class Canvas extends Component {
     return (
       <React.Fragment> 
           <h1>Draw a Number: 0 - 9</h1>
+        <LabelModal label={this.state.label} handleChange={this.handleChange}/>
         <div id="canvas-container">
           <canvas 
             id="canvas" 

@@ -4,7 +4,6 @@ const UserNums = require('../db/models/UserNums')
 
 
 router.post('/', async (req, res, next) => {
-  console.log('WOOOO')
   try{
     let newDrawing = await UserNums.create({
       label: req.body.label,

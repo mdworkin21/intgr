@@ -31,12 +31,12 @@ h1 {
   border: 2.5px solid black; 
 }
 
-#clear-button{
+#save-button{
   position: relative;
-  left: 10.5vw;
+  left: 22.5vw;
   top: 5vh;
   width: 13vw;
-  background-color: #BBD2C5;
+  background-color: rgb(228, 240, 233);
   border: 2.5px solid black; 
 }
 
