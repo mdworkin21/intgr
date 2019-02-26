@@ -4,7 +4,7 @@ h1 {
   min-height: 1rem;
   font-size: 2rem;
   position: relative;
-  left: 37vw;
+  left: 40vw;
   top: 5vh;
   text-shadow: 2px 2px black;
 }
@@ -12,7 +12,7 @@ h1 {
 
 #canvas-container{
   position: relative;
-  left: 36%;
+  left: 39%;
   top: 6vh; 
 }
 
@@ -24,13 +24,20 @@ h1 {
 
 #clear-button{
   position: relative;
-  left: 35vw;
+  left: 50.5vw;
   top: 5vh;
-  width: 23vw;
+  width: 13vw;
   background-color: #BBD2C5;
-  border: 2.5px solid black;
+  border: 2.5px solid black; 
+}
 
-  
+#clear-button{
+  position: relative;
+  left: 10.5vw;
+  top: 5vh;
+  width: 13vw;
+  background-color: #BBD2C5;
+  border: 2.5px solid black; 
 }
 
  /* Mobile  */

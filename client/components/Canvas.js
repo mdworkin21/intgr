@@ -39,6 +39,12 @@ class Canvas extends Component {
     context.beginPath()
   }
 
+  saveCanvas = () => {
+    let dataUrl = this.canvas.current.toDataURL()
+    console.log(dataUrl instanceof Blob)
+    return dataUrl
+  }
+
   //Touch Methods
   handleTouchStart = (event) => {   
     const[touchX, touchY] = this.getTouchPos(event)
@@ -122,6 +128,7 @@ class Canvas extends Component {
           </canvas>
         </div>
         <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
+        <button id="save-button" className="ui button" onClick={this.saveCanvas}>Save</button>
         </React.Fragment>
     )
   }  
