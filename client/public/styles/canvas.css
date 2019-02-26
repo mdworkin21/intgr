@@ -65,10 +65,22 @@ h1 {
  
   #clear-button{
     position: relative;
-    left: 39vw;
-    top: 4.5vh;
-    width: 23vw;
+    left: 58.5vw;
+    top: 5vh;
+    width: 20vw;
+    background-color: #BBD2C5;
+    border: 2.5px solid black; 
   }
+  
+  #save-button{
+    position: relative;
+    left: 5.5vw;
+    top: 5vh;
+    width: 20vw;
+    background-color: rgb(228, 240, 233);
+    border: 2.5px solid black; 
+  }
+
 }
 
 /* Tablets */
@@ -121,12 +133,22 @@ h1 {
       background-color: white;
       border: 5px solid black;
     }
-    
     #clear-button{
-      position: relative;
-      left: 41.5vw;
-      top: 5.5vh;
-      width: 16vw;
-    }
-
+    position: relative;
+    left: 50.5vw;
+    top: 5vh;
+    width: 9vw;
+    background-color: #BBD2C5;
+    border: 2.5px solid black; 
+  }
+  
+  #save-button{
+    position: relative;
+    left: 30.5vw;
+    top: 5vh;
+    width: 9vw;
+    background-color: rgb(228, 240, 233);
+    border: 2.5px solid black; 
+  }
 }
+

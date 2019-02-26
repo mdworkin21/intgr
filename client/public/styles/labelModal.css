@@ -3,3 +3,31 @@
   left: 43.5vw;
   top: 4vh;
 }
+
+@media only screen and (max-width: 40em) {
+  #label-form {
+    position: relative;
+    left: 32.5vw;
+    top: 4vh;
+  }
+}
+
+/* Tablets */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  #label-form {
+    position: relative;
+    left: 32.5vw;
+    top: 4vh;
+  }
+}
+
+
+/* ExtraLarge */
+@media only screen and (min-width: 90.063em) {
+  #label-form {
+    position: relative;
+    left: 44.5vw;
+    top: 4vh;
+  }
+ }
