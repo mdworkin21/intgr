@@ -1,8 +1,18 @@
 #label-form {
-  position: relative;
+  /* position: relative;
   left: 43.5vw;
-  top: 4vh;
+  top: 4vh; */
+  position: absolute;
+  left: 31.5vw;
+  top: 52vh;
+  /* height: 34vh;
+  margin-top: 0px; */
+  width: 36vw;
+  z-index: 1;
+  color: black;
 }
+
+
 
 @media only screen and (max-width: 40em) {
   #label-form {

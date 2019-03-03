@@ -15,14 +15,13 @@ class Canvas extends Component {
       height: 0,
       image: '',
       label: '',
-      modalOn: false
+      modalOn: ''
     }
 
     //This line is to stop unwanted scroll behavior on touch.
     document.addEventListener('touchmove', function (event){event.preventDefault()}, {passive: false})
 
-    //Prevents submission upon enter
-    document.addEventListener('submit', function (event){event.preventDefault()}, {passive: false})
+    
   }
 
   //Mouse and Touch use these
@@ -46,22 +45,25 @@ class Canvas extends Component {
     context.beginPath()
   }
 
-  saveCanvas = async (event) => {
+  submitCanvas = async (event) => {
     event.preventDefault()
     let dataUrl = this.canvas.current.toDataURL()
     this.setState({
       image: dataUrl
     })
     try{
-      let newDrawing = await axios.post('/api/userNums', {
-        label: this.state.label,
+      //Just a dummy route for now, returns random number
+      let newDrawing = await axios.post('/api/analyze/runAnalysis', {
         image: dataUrl
       })
       
+      // Use this to trigger the modal
       if (newDrawing.status === 200){
         this.clearCanvas()
         this.setState({
-          label: ''
+          image: '',
+          modalOn: 'active',
+          label: newDrawing.data
         })
       }
     } catch(err) {
@@ -73,7 +75,6 @@ class Canvas extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state)
   }
 
   //Touch Methods
@@ -143,8 +144,8 @@ class Canvas extends Component {
   render(){
     return (
       <React.Fragment> 
-          <h1>Draw a Number: 0 - 9</h1>
-        <LabelModal label={this.state.label} handleChange={this.handleChange}/>
+        <h1>Draw a Number: 0 - 9</h1>
+        {/* <LabelModal modal={this.state.modalOn} label={this.state.label}/>  */}
         <div id="canvas-container">
           <canvas 
             id="canvas" 
@@ -160,7 +161,7 @@ class Canvas extends Component {
           </canvas>
         </div>
         <button id="clear-button" className="ui button" onClick={this.clearCanvas}>Clear</button>
-        <button id="save-button" className="ui button" onClick={this.saveCanvas}>Save</button>
+        <button id="submit-button" className="ui button" onClick={this.submitCanvas}>Submit</button>
         </React.Fragment>
     )
   }  

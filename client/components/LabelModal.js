@@ -1,11 +1,17 @@
 import React from 'react'
 import '../public/styles/labelModal.css'
 
-const LabelModal = ({label, handleChange}) => {
+const LabelModal = ({label, modal}) => {
+  console.log('MOD', label, modal)
   return (
-    <form id="label-form">
-      <input type="text" name='label' placeholder='What number is it?' value={label} onChange={handleChange}/>
-    </form>
+    <div className="modal-container">
+      <h1>Results</h1>
+      <div className="modal-input">
+        <textarea rows="3"></textarea>
+      </div>
+      <button type="button" className='btn-close'>Close</button>
+      <button type="button" className='btn-accept'>Yup!</button>
+    </div>
   )
 }
 
