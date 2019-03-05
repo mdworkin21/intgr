@@ -76,6 +76,7 @@ h1 {
     position: relative;
     left: 5.5vw;
     top: 5vh;
+    padding-left: 14px;     
     width: 20vw;
     background-color: rgb(228, 240, 233);
     border: 2.5px solid black; 

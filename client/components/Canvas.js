@@ -21,7 +21,6 @@ class Canvas extends Component {
     //This line is to stop unwanted scroll behavior on touch.
     document.addEventListener('touchmove', function (event){event.preventDefault()}, {passive: false})
 
-    
   }
 
   //Mouse and Touch use these
@@ -29,6 +28,7 @@ class Canvas extends Component {
     let mouseX = coordX
     let mouseY = coordY
     let canvas = this.canvas.current
+    //Checks to make sure context identifier is supported
     if (canvas.getContext){
       let context = canvas.getContext('2d')
       context.moveTo(mouseX, mouseY)
@@ -47,6 +47,7 @@ class Canvas extends Component {
 
   submitCanvas = async (event) => {
     event.preventDefault()
+    //Turn canvas into string so it can be saved &/|| processed
     let dataUrl = this.canvas.current.toDataURL()
     this.setState({
       image: dataUrl
@@ -57,7 +58,7 @@ class Canvas extends Component {
         image: dataUrl
       })
       
-      // Use this to trigger the modal
+      // Use this to trigger the modal once modal is ready
       if (newDrawing.status === 200){
         this.clearCanvas()
         this.setState({
@@ -65,6 +66,10 @@ class Canvas extends Component {
           modalOn: 'active',
           label: newDrawing.data
         })
+
+        //Placeholder for now
+        alert('Result: ' + this.state.label)
+
       }
     } catch(err) {
         console.log(err)
@@ -79,13 +84,14 @@ class Canvas extends Component {
 
   //Touch Methods
   handleTouchStart = (event) => {   
-    const[touchX, touchY] = this.getTouchPos(event)
+    const [touchX, touchY] = this.getTouchPos(event)
     this.draw(touchX, touchY)
   }
 
   getTouchPos = (event) => {
     let touchX, touchY
     if(event.touches){
+      //Checks to make sure only 1 finger
       if (event.touches.length === 1){
         let rect = this.canvas.current.getBoundingClientRect()
         let touch = event.touches[0]
@@ -112,10 +118,9 @@ class Canvas extends Component {
 
   handleMouseMove = (event) => {
     if(this.state.isDown){
-    let nativeEvent = event.nativeEvent  
-    this.draw(nativeEvent.offsetX, nativeEvent.offsetY)
+      let nativeEvent = event.nativeEvent  
+      this.draw(nativeEvent.offsetX, nativeEvent.offsetY)
     }
-    event.preventDefault()
   }
 
   handleMouseUp = () => {
@@ -145,7 +150,6 @@ class Canvas extends Component {
     return (
       <React.Fragment> 
         <h1>Draw a Number: 0 - 9</h1>
-        {/* <LabelModal modal={this.state.modalOn} label={this.state.label}/>  */}
         <div id="canvas-container">
           <canvas 
             id="canvas" 
