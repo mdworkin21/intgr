@@ -3,3 +3,4 @@ client/public/bundle.js
 client/public/bundle.js.map
 .DS_Store
 .vscode/
+server/datasets
