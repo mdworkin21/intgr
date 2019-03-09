@@ -49,6 +49,16 @@ class Canvas extends Component {
     event.preventDefault()
     //Turn canvas into string so it can be saved &/|| processed
     let dataUrl = this.canvas.current.toDataURL()
+    //Converts dataUrl into an array, so we can process it. This might not be type of array we want, just playing around for now.
+    // let length = dataUrl.length
+    // let bytes = new Uint8Array(length)
+    // let arrBuff = new ArrayBuffer(length)
+    // for (let i = 0; i < length; i++){
+    //   //Probabvly don't want charCode, just doing this to test
+    //   bytes[i] = dataUrl.charCodeAt(i)
+    // }
+
+  
     this.setState({
       image: dataUrl
     })
