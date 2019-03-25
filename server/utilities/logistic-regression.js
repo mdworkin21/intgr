@@ -33,7 +33,7 @@ class LogisticRegression {
     for (let i = 0; i < this.options.iterations; i++){
       for (let j = 0; j < batchQuantity; j++){
         const startIdx = j * this.options.batchSize
-        const {batchSize} = this.options.batchSize 
+        const batchSize = this.options.batchSize 
         const featureSlice = this.features.slice([startIdx, 0], [batchSize, -1])
         const labelSlice = this.labels.slice([startIdx, 0], [batchSize, -1])
         this.gradientDescent(featureSlice, labelSlice)
@@ -77,9 +77,10 @@ class LogisticRegression {
   //Standardizes features
   standardize(features){
     const {mean, variance} = tf.moments(features, 0)
+    const  filler = variance.cast('bool').logicalNot().cast('float32')
     this.mean = mean;
-    this.variance = variance
-    return features.sub(mean).div(variance.pow(0.5))
+    this.variance = variance.add(filler)
+    return features.sub(mean).div(this.variance.pow(0.5))
   }
   
   //Caclulates and records Cross Entropy (cost)
