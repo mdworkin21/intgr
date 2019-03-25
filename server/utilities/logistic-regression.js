@@ -24,7 +24,7 @@ class LogisticRegression {
         .matMul(differences)
         .div(features.shape[0])
     //adjust m and b (weights)
-    this.weights = this.weights.sub(slopes.mul(this.options.learningRate))
+    return this.weights.sub(slopes.mul(this.options.learningRate))
   }
 
   //Train the model to get the weights adjusted, also adjusts learning rate on every iteration of grad descent
@@ -34,9 +34,11 @@ class LogisticRegression {
       for (let j = 0; j < batchQuantity; j++){
         const startIdx = j * this.options.batchSize
         const batchSize = this.options.batchSize 
-        const featureSlice = this.features.slice([startIdx, 0], [batchSize, -1])
-        const labelSlice = this.labels.slice([startIdx, 0], [batchSize, -1])
-        this.gradientDescent(featureSlice, labelSlice)
+        this.weights = tf.tidy(() => {
+          const featureSlice = this.features.slice([startIdx, 0], [batchSize, -1])
+          const labelSlice = this.labels.slice([startIdx, 0], [batchSize, -1])
+          return this.gradientDescent(featureSlice, labelSlice)
+        })
       }
       this.recordCost()
       this.updateLearningRate()
@@ -51,11 +53,11 @@ class LogisticRegression {
   }
 
   //We then test the model, the tests will use the weights that we got from training
-  async test(testFeatures, testLabels){
+  test(testFeatures, testLabels){
     const predictions = this.predict(testFeatures)
     testLabels = tf.tensor(testLabels).argMax(1)
     //Note using arraySync might cause performance issues since it's synchronous, if so, consider async version(.array)
-    let incorrect = await predictions.notEqual(testLabels).sum().array()
+    let incorrect = predictions.notEqual(testLabels).sum().arraySync()
     return (predictions.shape[0] - incorrect) / predictions.shape[0]
   }
 
@@ -84,20 +86,23 @@ class LogisticRegression {
   }
   
   //Caclulates and records Cross Entropy (cost)
-  async recordCost(){
-    const guesses = this.features.matMul(this.weights).softmax()
-    const termOne = this.labels
-      .transpose()
-      .matMul(guesses.log())
+  recordCost(){
+    const cost = tf.tidy(() => {
+      const guesses = this.features.matMul(this.weights).sigmoid()
+      const termOne = this.labels
+        .transpose()
+        .matMul(guesses.add(1e-7).log())
+  
+        //Adding add(1e-7) is to make sure we never take the log of exactly 0 (b/c that gives us -Infinity, which we don't want). Number we add is so small it has negligible effect on cost history
+      const termTwo = this.labels.mul(-1).add(1).transpose().matMul(
+        guesses.mul(-1).add(1).add(1e-7).log()
+      )
+     return termOne.add(termTwo).div(this.features.shape[0]).mul(-1).arraySync(0, 0)
+    })
 
-    const termTwo = this.labels.mul(-1).add(1).transpose().matMul(
-      guesses.mul(-1).add(1).log()
-    )
-
-   const cost = await termOne.add(termTwo).div(this.features.shape[0]).mul(-1).array(0, 0)
    this.costHistory.unshift(cost)
   }
-
+  
   //looks at cost history, and decides how to update learning rate
   updateLearningRate(){
     if (this.costHistory.length < 2){

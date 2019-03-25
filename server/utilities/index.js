@@ -1,6 +1,7 @@
 require('@tensorflow/tfjs-node')
 const tf = require('@tensorflow/tfjs')
 const LogisticRegression = require('./logistic-regression')
+const plot = require('node-remote-plot')
 const _ = require('lodash')
 const mnist = require('mnist-data')
 
@@ -22,13 +23,13 @@ const {features, labels} = loadData()
 
 const regression = new LogisticRegression(features, labels, {
   learningRate: 1,
-  iterations: 20,
-  batchSize: 100
+  iterations: 40,
+  batchSize: 400
 })
 
 regression.train()
 
-const testMnistData = mnist.testing(0, 1000)
+const testMnistData = mnist.testing(0, 10000)
 const testFeatures = testMnistData.images.values.map(image => _.flatMap(image))
 const testEncodedLaels = testMnistData.labels.values.map(label => {
   const row = new Array(10).fill(0)
@@ -36,11 +37,11 @@ const testEncodedLaels = testMnistData.labels.values.map(label => {
   return row
 })
 
-//Have to put this in a function so we can get the promise out
-async function runTest(){
-  const acurracy = await regression.test(testFeatures, testEncodedLaels)
-  console.log('ACCURACY IS: ', acurracy)
+const acurracy = regression.test(testFeatures, testEncodedLaels)
+console.log('ACCURACY IS: ', acurracy)
 
-}
+// plot({
+//   x: regression.costHistory
+// })
 
-runTest()
+// console.log('PLOT', plot)
